@@ -2,19 +2,22 @@
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
+    
 }
 .navbar {
-    background: gainsboro;
+    /* background: gainsboro; */
+    background: #F88379;
     padding-top: 15px;
     padding-bottom: 15px;
     border: 0;
     border-radius: 0;
     margin-bottom: 0;
-    font-size: 12px;
-    letter-spacing: 5px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    
 }
 .navbar-nav  li a:hover {
-    color: #1abc9c !important;
+    color: #F88379 !important;
 }
 
 .footer-padding {
@@ -27,7 +30,8 @@
 	bottom: 0;
 	width: 100%;
 	/* height: auto; */
-	background-color: grey;
+	/* background-color: grey; */
+  background-color: #F88379;
 }
 
 .footer p {
@@ -76,4 +80,33 @@
 #generate_button{
   position: relative;
   margin-left:70%;
+}
+
+#hometut{
+  font-family: 'Rouge Script', cursive;
+  font-size: 75px;
+  color: white;
+}
+#logo{
+  width:10px;
+  height:30px;
+}
+.menu a{
+  color:white;
+}
+#teacher{
+  height:300px;
+  width:570px;
+  /* align-items: center; */
+}
+.containerss {
+  display: flex; /* Use flexbox to arrange the divs */
+}
+
+.left-div, .right-div {
+  width: 50%; /* Set the width of each div to 50% to make them equal width */
+  height: 300px; /* Set the height of each div */
+  background-color: #ddd; /* Add some styling to the divs */
+  text-align: center;
+  line-height: 100px; /* Center text vertically */
 }
