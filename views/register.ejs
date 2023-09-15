@@ -9,6 +9,7 @@
 <form action="/register" method="post">
     <div id = "Details" class = "tabcontent">
         <!-- <form action="/register" method="post"> -->
+            <h3>Enter your Personal Details</h3>
             <div class = "form-group">
                 <label for="fname">Full Name</label>
                 <input type="text" name="name" class="form-control" autocomplete="off">
@@ -35,9 +36,9 @@
 
     <div id="level" class="tabcontent">
         <!-- <form action="/register" method="post"> -->
-            <h1>Select Your Qualifications</h1>
+            <h3>Select Your Qualifications</h3>
             <div class = "form-group">
-                <label>Educational Qualification</label>
+                <label>Educational Qualification</label><br>
                 <!-- <input type="text" name="DBMS" class="form-control" autocomplete="off"> -->
                 <select name="DBMS" onchange="getVal();" id="edu" name="edu">
                     <option selected disabled>Select Education</option>
@@ -63,7 +64,6 @@
                 <label>Fees</label>
                 <input type="text" name="fee" class="form-control" autocomplete="off">
             </div>
-
             <!-- <button type = "submit" class="btn btn-primary">Submit</button> -->
     </div>
 

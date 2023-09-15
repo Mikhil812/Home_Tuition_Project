@@ -25,11 +25,13 @@
 }
 
 .footer {
-	position:fixed;
+	/* position:relative; */
+  position: fixed;
 	text-align: center;
 	bottom: 0;
 	width: 100%;
-	/* height: auto; */
+  height:auto;
+	/* height: 40px; */
 	/* background-color: grey; */
   background-color: #F88379;
 }
@@ -61,12 +63,14 @@
   
   /* Change background color of buttons on hover */
   .tab button:hover {
-    background-color: #ddd;
+    background-color: white;
+    color: #F88379;
   }
   
   /* Create an active/current tablink class */
   .tab button.active {
-    background-color: #ccc;
+    background-color: #F88379;
+    color: white;
   }
   
   /* Style the tab content */
@@ -95,7 +99,7 @@
   color:white;
 }
 #teacher{
-  height:300px;
+  height:400px;
   width:570px;
   /* align-items: center; */
 }
@@ -105,8 +109,41 @@
 
 .left-div, .right-div {
   width: 50%; /* Set the width of each div to 50% to make them equal width */
-  height: 300px; /* Set the height of each div */
+  height: 400px; /* Set the height of each div */
   background-color: #ddd; /* Add some styling to the divs */
-  text-align: center;
-  line-height: 100px; /* Center text vertically */
+  /* text-align: center; */
+  /* line-height: 10px; Center text vertically */
+}
+.right-div{
+  padding-left: 5px;
+}
+body{
+  background-color: #f5faf7;
+}
+.tab, .tabcontent
+{
+  background: #fed8b1;
+
+}
+/* Style the dropdown container */
+select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%; /* Adjust the width as needed */
+}
+
+/* Style the dropdown options */
+select option {
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Style the dropdown when it's focused */
+select:focus {
+  border-color: #007bff;
+  outline: none;
 }
