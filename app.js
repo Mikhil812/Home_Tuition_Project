@@ -107,7 +107,6 @@ const req = https.request(options, function (res) {
           }
         
           members.push(details);
-          // console.log(members);
         
           response.render("view", {
             detail : members
