@@ -48,14 +48,10 @@ app.post("/register", function(request, response){
   const query = request.body.city;
 
   const url = "https://api.openweathermap.org/geo/1.0/direct?q=" + query + "&limit=5&appid="+apikey;
-  // const url = "https://api.openweathermap.org/geo/1.0/direct?q=Mumbai&limit=5&appid="+apikey;
+
   https.get(url, function(response){
     response.on("data", function(data){
       const coordinateData = JSON.parse(data);
-      console.log(coordinateData);
-
-      // console.log(coordinateData[0].lat);
-      // console.log(coordinateData[0].lon);
 
       latitude = coordinateData[0].lat;
       longitude = coordinateData[0].lon;
@@ -86,12 +82,8 @@ const req = https.request(options, function (res) {
 
     res.on('end', function () {
         const body = Buffer.concat(chunks);
-        // console.log(body.toString());
-        const Data = JSON.parse(body);
-        // console.log(Data);
 
-        // response.write("<h1>This Phone number validity is : " + Data.isValidNumber + "</h1>");
-        // response.send();
+        const Data = JSON.parse(body);
 
         const validity = Data.isValidNumber;
         if(validity == true)
