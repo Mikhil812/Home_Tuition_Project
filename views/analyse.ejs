@@ -3,18 +3,19 @@
 <h1>Graphical Analysis</h1>
 
 <!-- </div> -->
+<script>
+    var arr = [];
+    for(var i=0; i< <% markDetail.length %>; i++){
+        arr.push(markDetail[i].years);
+    }
+    console.log(arr);
+</script>
+
 <% for(var i=0; i < markDetail.length; i++){ %>
     <div id='myDiv' style="position: absolute; right:80px;">
-        <!-- <h1> <%= markDetail[i].dbmsMark%> </h1>
-        <h1> <%= markDetail[i].tocMark %></h1>
-        <h1> <%= markDetail[i].daaMark %> </h1>
-        <h1> <%= markDetail[i].osMark %></h1> -->
-
         <script>
-            // console.log(<%= markDetail[i].osMark %>);
             
             var data = [{
-                // values: [1,2,3,4],
                 values: [<%= markDetail[i].dbmsMark%>,<%= markDetail[i].tocMark %>, <%= markDetail[i].daaMark %>, <%= markDetail[i].osMark %>],
                 labels: ['DBMS', 'TOC', 'DAA', 'OS'],
                 type: 'pie'

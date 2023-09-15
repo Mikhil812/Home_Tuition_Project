@@ -97,17 +97,19 @@ const req = https.request(options, function (res) {
         if(validity == true)
         {
           const details = {
-            firstname : request.body.fname,
-            lastname : request.body.lname,
+            // Personal Details : 
+            fullname : request.body.name,
             phoneno : request.body.phone,
             mailid : request.body.email,
-            // dbmsMark : request.body.DBMS,
-            // osMark : request.body.OS,
-            // daaMark : request.body.DAA,
-            // tocMark : request.body.TOC,
+            age : request.body.age,
+            
+            // Educational Qualification : 
+            // level : anushree_variable,
             courseTaught : request.body.course,
-            fees : request.body.fees,
-
+            years : request.body.years,
+            fees : request.body.fee,
+            
+            // Address : 
             lat : latitude,
             lon : longitude
           }
