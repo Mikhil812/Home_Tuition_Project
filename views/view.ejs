@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs"); -%>
+
+<h1 style="padding : 25px 0 25px 0 ;">Data</h1>
+
+<table class = "table table-hover" id = "table-id">
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email ID</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Payment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i < detail.length; i++){ %>
+            <tr>
+                <td> <%= detail[i].firstname %></td>
+                <td> <%= detail[i].lastname %></td>
+                <td> <%= detail[i].mailid %></td>  
+                <td> <%= detail[i].phoneno %></td>
+                <form action="/view" method="post">
+                <td> <button class="btn btn-primary px-5 mb-5" type="submit">Pay</button></td>
+                </form>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<a href="/analyse">Analyse</a>
+
+<input type="button" class="btn btn-primary" onclick="GeneratePdf();" value="GeneratePdf" id="generate_button">
+
+<script>          
+    // Function to GeneratePdf
+    function GeneratePdf() {
+        var element = document.getElementById('table-id');
+        html2pdf(element);
+    }
+</script>
+
+</body>
+
+<%- include("partials/footer.ejs"); -%>
