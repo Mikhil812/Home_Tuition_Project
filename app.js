@@ -104,7 +104,7 @@ const req = https.request(options, function (res) {
             age : request.body.age,
             
             // Educational Qualification : 
-            // level : anushree_variable,
+            level : request.body.edu,
             courseTaught : request.body.course,
             years : request.body.years,
             fees : request.body.fee,
