@@ -8,103 +8,95 @@
 
 <form action="/register" method="post">
     <div id = "Details" class = "tabcontent">
-        <!-- <form action="/register" method="post"> -->
-            <div class = "form-group">
-                <label for="fname">Full Name</label>
-                <input type="text" name="name" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label for="lname">Age</label>
-                <input type="text" name="age" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Age</label>
+            <input type="text" name="age" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" name="phone" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label for="email">E mail</label>
-                <input type="email" name="email" class="form-control" autocomplete="off">
-            </div>
-
-            <!-- <button type = "submit" class="btn btn-primary">Submit</button> -->
-        <!-- </form> -->
+        <div class = "form-group">
+            <label>E mail</label>
+            <input type="email" name="email" class="form-control" autocomplete="off">
+        </div>
     </div>
 
     <div id="level" class="tabcontent">
-        <!-- <form action="/register" method="post"> -->
-            <h1>Select Your Qualifications</h1>
-            <div class = "form-group">
-                <label>Anushree Dropdown</label>
-                <input type="text" name="DBMS" class="form-control" autocomplete="off">
-            </div>
+        <h1>Select Your Qualifications</h1>
+        <div class = "form-group">
+            <label>Anushree Dropdown</label>
+            <input type="text" name="DBMS" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label>Course Taught</label>
-                <input type="text" name="course" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Course Taught</label>
+            <input type="text" name="course" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label>Teaching Experience</label>
-                <input type="number" name="years" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Teaching Experience</label>
+            <input type="number" name="years" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label>Fees</label>
-                <input type="text" name="fee" class="form-control" autocomplete="off">
-            </div>
-
-            <!-- <button type = "submit" class="btn btn-primary">Submit</button> -->
+        <div class = "form-group">
+            <label>Fees</label>
+            <input type="text" name="fee" class="form-control" autocomplete="off">
+        </div>
     </div>
 
     <div id="Place" class="tabcontent">
         <h3>Address</h3>
-            <div class = "form-group">
-                <label for="">Building No./Flat No.</label>
-                <input type="text" name="" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Building No./Flat No.</label>
+            <input type="text" name="" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label for="city">City</label>
-                <input type="text" name="city" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>City</label>
+            <input type="text" name="city" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label for="state">State</label>
-                <input type="text" name="state" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>State</label>
+            <input type="text" name="state" class="form-control" autocomplete="off">
+        </div>
 
-            <div class = "form-group">
-                <label for="">Zip Code</label>
-                <input type="text" name="" class="form-control" autocomplete="off">
-            </div>
+        <div class = "form-group">
+            <label>Zip Code</label>
+            <input type="text" name="" class="form-control" autocomplete="off">
+        </div>
 
-            <button type = "submit" class="btn btn-primary">Submit</button>
+        <button type = "submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
 
 <script>
-    function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-  
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-  
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    function openCity(evt, cityName) 
+    {
+        var i, tabcontent, tablinks;
+    
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) 
+        {
+            tabcontent[i].style.display = "none";
+        }
+    
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) 
+        {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+    
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
   }
 </script>
 
