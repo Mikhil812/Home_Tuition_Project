@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome <%= tdata[0].name %></h1>
+        <h1>Welcome <%= sdata[0].name %></h1>
     
         <table class = "table table-hover" id = "table-id">
             <thead>
@@ -36,19 +36,39 @@
                 </tr>
             </thead>
             <tbody>
-                <% for(var i=0; i < tdata.length; i++){ %>
+                <% for(var i=0; i < sdata.length; i++){ %>
                     <tr>
-                        <td> <%= tdata[i].name %></td>
-                        <td> <%= tdata[i].username %></td>
-                        <td> <%= tdata[i].age %></td>
-                        <td> <%= tdata[i].phone %></td>
-                        <td> <%= tdata[i].email %></td>
-                        <td> <%= tdata[i].course %></td>
+                        <td> <%= sdata[i].name %></td>
+                        <td> <%= sdata[i].username %></td>
+                        <td> <%= sdata[i].age %></td>
+                        <td> <%= sdata[i].phone %></td>
+                        <td> <%= sdata[i].email %></td>
+                        <td> <%= sdata[i].course %></td>
                         
                     </tr>
                 <% } %>
             </tbody>
-        </table>
+        </table>        
+    </div>
+    <div class = "container">
+        <table class = "table table-hover" id = "table-id">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i < tdata.length; i++){ %>
+                    <tr>
+                        <td> <%= tdata[i].name %></td>
+                        <td> <%= tdata[i].city %></td>
+                        <td> <%= tdata[i].course %></td>                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table> 
     </div>
 </body>
 

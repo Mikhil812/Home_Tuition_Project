@@ -110,6 +110,14 @@ const TeacherSchema = new mongoose.Schema({
     zipcode:{
         type: Number,
         required:false
+    },
+    lat:{
+        type: String,
+        required : false
+    },
+    lon:{
+        type: String,
+        required : false
     }
 });
 

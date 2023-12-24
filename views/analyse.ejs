@@ -6,11 +6,11 @@
     var yearArr = [];
     var nameArr = [];
     var feeArr = [];
-    <% for(var i=0; i < markDetail.length; i++){ %>
+    <% for(var i=0; i < teacherDetail.length; i++){ %>
 
-        yearArr.push(<%= markDetail[i].years %> );
-        nameArr.push('<%= markDetail[i].fullname %>' + ' (<%= markDetail[i].courseTaught %>)');
-        feeArr.push(<%= markDetail[i].fees %>);
+        yearArr.push(<%= teacherDetail[i].years %> );
+        nameArr.push('<%= teacherDetail[i].name %>' + ' (<%= teacherDetail[i].course %>)');
+        feeArr.push(<%= teacherDetail[i].fee %>);
         
     <% } %>
 </script>
@@ -71,10 +71,10 @@
         maxZoom: 19,
     }).addTo(map);
 
-    <% for(var i=0; i < markDetail.length; i++){ %>
+    <% for(var i=0; i < teacherDetail.length; i++){ %>
 
-        var marker = L.marker([<%= markDetail[i].lat%>, <%= markDetail[i].lon %>]).addTo(map);
-        marker.bindPopup('<%= markDetail[i].fullname %>' + ' (<%= markDetail[i].courseTaught %>)').openPopup();
+        var marker = L.marker([<%= teacherDetail[i].lat%>, <%= teacherDetail[i].lon %>]).addTo(map);
+        marker.bindPopup('<%= teacherDetail[i].name %>' + ' (<%= teacherDetail[i].course %>)').openPopup();
 
     <% } %>
 </script>
