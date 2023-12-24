@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WIM Assign</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">  
+
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <div class="navbar-header ">
+          <p class="navbar-brand" id="hometut">Home Tutor</p>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- 6 -->
+            <li id="home" class="menu"><a href="/">HOME</a></li>
+          </ul>
+      </div>
+    </nav>
+  </head>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome <%= tdata[0].name %></h1>
+    
+        <table class = "table table-hover" id = "table-id">
+            <thead>
+                <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i < tdata.length; i++){ %>
+                    <tr>
+                        <td> <%= tdata[i].name %></td>
+                        <td> <%= tdata[i].username %></td>
+                        <td> <%= tdata[i].age %></td>
+                        <td> <%= tdata[i].phone %></td>
+                        <td> <%= tdata[i].email %></td>
+                        <td> <%= tdata[i].course %></td>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<div class="footer-padding"></div>
+    <div class="footer">
+        <p>Copyright ©2023 Home Tutor Pvt. Ltd. All rights reserved.</p>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>

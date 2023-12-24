@@ -1,0 +1,120 @@
+<%- include("partials/header.ejs"); -%>
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Credentials')">Credentials</button>
+    <button class="tablinks" onclick="openCity(event, 'Details')">Personal Details</button>
+    <button class="tablinks" onclick="openCity(event, 'level')">Qualification</button>
+    <button class="tablinks" onclick="openCity(event, 'Place')">Address</button>
+</div>
+
+<form action="/signups" method="post">
+
+    <div id = "Credentials" class = "tabcontent">
+        <h3>Set your Credentials</h3>
+        <div class = "form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" class="form-control" required autocomplete="off">
+        </div>
+        <div class = "form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" class="form-control" required autocomplete="off">
+        </div>
+        <p>Already have an account ? <a href="/logins">Login</a></p>
+</div>
+
+    <div id = "Details" class = "tabcontent">
+            <h3>Enter your Personal Details</h3>
+            <div class = "form-group">
+                <label for="fname">Full Name</label>
+                <input type="text" name="name" class="form-control" autocomplete="off">
+            </div>
+
+            <div class = "form-group">
+                <label for="lname">Age</label>
+                <input type="text" name="age" class="form-control" autocomplete="off">
+            </div>
+
+            <div class = "form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" name="phone" class="form-control" autocomplete="off">
+            </div>
+
+            <div class = "form-group">
+                <label for="email">E mail</label>
+                <input type="email" name="email" class="form-control" autocomplete="off">
+            </div>
+    </div>
+
+    <div id="level" class="tabcontent">
+            <h3>Select Your Education</h3>
+            <div class = "form-group">
+                <label>Educational Qualification</label><br>
+                <select name="DBMS" onchange="getVal();" id="edu" name="edu">
+                    <option selected disabled>Select Education</option>
+                    <option value="High School(10th)">High School(10th)</option>
+                    <option value="Junior College(12th)">Junior College(12th)</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
+                    <option value="PHD Degree"> PHD Degree</option>
+                </select>
+            </div>
+
+            <div class = "form-group">
+                <label>Course Interested</label>
+                <input type="text" name="course" class="form-control" autocomplete="off">
+            </div>
+    </div>
+
+    <div id="Place" class="tabcontent">
+        <h3>Address</h3>
+            <div class = "form-group">
+                <label for="city">City</label>
+                <input type="text" name="city" class="form-control" autocomplete="off">
+            </div>
+
+            <div class = "form-group">
+                <label for="state">State</label>
+                <input type="text" name="state" class="form-control" autocomplete="off">
+            </div>
+
+            <div class = "form-group">
+                <label for="zipcode">Zip Code</label>
+                <input type="text" name="zipcode" class="form-control" autocomplete="off">
+            </div>
+
+            <button type = "submit" class="btn btn-primary">SignUp</button>
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+crossorigin="anonymous"></script>
+
+<script>
+    function openCity(evt, cityName) 
+    {
+        var i, tabcontent, tablinks;
+    
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) 
+        {
+            tabcontent[i].style.display = "none";
+        }
+    
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) 
+        {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+    
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+
+<%- include("partials/footer.ejs"); -%>

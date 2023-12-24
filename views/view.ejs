@@ -1,39 +1,8 @@
 <%- include("partials/header.ejs"); -%>
 
-<h1 style="padding : 25px 0 25px 0 ;">Data</h1>
-
-<table class = "table table-hover" id = "table-id">
-    <thead>
-        <tr>
-            <th scope="col">Full Name</th>
-            <th scope="col">Age</th>
-            <th scope="col">Email ID</th>
-            <th scope="col">Phone Number</th>
-
-            <th scope="col">Course</th>
-            <th scope="col">Teaching Experience</th>
-            <th scope="col">Fees</th>
-            <th scope="col">Payment</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% for(var i=0; i < detail.length; i++){ %>
-            <tr>
-                <td> <%= detail[i].fullname %></td>
-                <td> <%= detail[i].age %></td>
-                <td> <%= detail[i].mailid %></td>  
-                <td> <%= detail[i].phoneno %></td>
-
-                <td> <%= detail[i].courseTaught %></td>
-                <td> <%= detail[i].years %> <span>years</span></td>
-                <td> <%= detail[i].fees %></td>
                 <form action="/view" method="post">
                 <td> <button class="btn btn-primary px-5 mb-5" type="submit">Pay</button></td>
                 </form>
-            </tr>
-        <% } %>
-    </tbody>
-</table>
 
 <a href="/analyse">Analyse</a>
 

@@ -98,6 +98,9 @@
 .menu a{
   color:white;
 }
+.nav-item a{
+  color:white;
+}
 #teacher{
   height:400px;
   width:570px;
@@ -147,3 +150,4 @@ select:focus {
   border-color: #007bff;
   outline: none;
 }
+

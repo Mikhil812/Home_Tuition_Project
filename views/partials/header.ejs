@@ -5,6 +5,12 @@
   <meta charset="utf-8">
   <title>WIM Assign</title>
   <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyCk5iZf5L0aPBFY7IboZp3a7I5MTL1IlC" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js" integrity="sha384-d7s5tnaXE5X1TE3Fjllqd5NDbxEGGozQQmebThM5Dtj9VigMkNE3LWvPbGXGfTfw" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyCk5iZf5L0aPBFY7IboZp3a7I5MTL1IlC" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/styles.css">
   <script src='https://cdn.plot.ly/plotly-2.25.2.min.js'></script>
@@ -24,8 +30,27 @@
         <ul class="nav navbar-nav navbar-right">
           <!-- 6 -->
           <li id="home" class="menu"><a href="/">HOME</a></li>
-          <li id="contact" class="menu"><a href="/register">REGISTER</a></li>
-          <li id="about" class="menu"><a href="/view">VIEW</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">LOGIN</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/logins">Student</a></li>
+            <li><a class="dropdown-item" href="/logint">Teacher</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Admin</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">SIGNUP</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/signups">Student</a></li>
+            <li><a class="dropdown-item" href="/signupt">Teacher</a></li>
+          </ul>
+        </li>
+        <li id="about" class="menu"><a href="/analyse">STATISTICS</a></li>
+        <li id="about" class="menu"><a href="/view">DONATE</a></li>
+        <!-- <form action="/view" method="post">
+          <button id="about" class="menu" type="submit">DONATE</button>
+          </form> -->
         </ul>
     </div>
   </nav>
