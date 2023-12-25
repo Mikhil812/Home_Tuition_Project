@@ -5,20 +5,16 @@
     Thank you for investing in education and changing lives</h2>
 </div>
 
+<div class="form-container">
 <form action="/view" method="post">
+    <div class="form-group">
+        <label for="amount">Donation Amount : </label>
+        <input type="number" id="amount" name="amount" placeholder="Enter donation amount" required autocomplete="off">
+    </div>
 <td> <button class="btn btn-primary px-5 mb-5" type="submit">Pay</button></td>
 </form>
+</div>
 
-<a href="/analyse">Analyse</a>
-
-<input type="button" class="btn btn-primary" onclick="GeneratePdf();" value="GeneratePdf" id="generate_button">
-
-<script>          
-    function GeneratePdf() {
-        var element = document.getElementById('table-id');
-        html2pdf(element);
-    }
-</script>
 
 </body>
 

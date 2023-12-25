@@ -122,8 +122,20 @@ const TeacherSchema = new mongoose.Schema({
     enrolledStudents : [LoginSchema]
 });
 
+const DonateSchema = new mongoose.Schema({
+    amount:{
+        type: Number,
+        required: true
+    },
+    donors:{
+        type: Number,
+        required: true
+    }
+})
+
 //Collection Part
 const student = new mongoose.model("students",LoginSchema);
 const teacher = new mongoose.model("teachers",TeacherSchema);
+const donate = new mongoose.model("donates",DonateSchema);
 
-module.exports = {student, teacher};
+module.exports = {student, teacher, donate};

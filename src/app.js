@@ -47,7 +47,16 @@ app.get("/analyse", async function(req, res){
   });
 })
 
-app.post("/view", function(req, res){
+app.post("/view", async function(req, res){
+ 
+  //Get amount in database
+  const existing = await collection.donate.find();
+  console.log(existing);
+  const newamt = existing[0].amount + parseInt(req.body.amount);
+  const newdonor = existing[0].donors + 1;
+  await collection.donate.updateOne({amount:existing[0].amount},{amount:newamt,donors:newdonor});
+  const updated = await collection.donate.find();
+  console.log(updated);
   res.sendFile(path.join(__dirname, '../views/payment.html'));
 });
 
@@ -154,17 +163,14 @@ app.post("/logint", async (req,res)=>{
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if(isPasswordMatch)
       {
-          var send=[];
-          send.push(check);
-          res.render("viewt", {tdata:send});
-
+          res.render("viewt", {tdata:check});
       }
       else{
           res.send("Wrong password");
       }
   }
   catch{
-      res.send("Wrong Credentials");
+     res.send("Wrong Credentials");
   }
 });
 
@@ -225,13 +231,16 @@ app.post("/logins", async (req,res)=>{
           res.send("User name cannot be found");
       }
 
-      //compare password from teh plain text to the hash password stored in database
+      //compare password from the plain text to the hash password stored in database
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if(isPasswordMatch)
       {
           var send=[];
           send.push(check);
-          res.render("viewst", {tdata:send});
+          const query = await collection.teacher.find({$and:[{city:{$eq:send[0].city}},{course: {$eq: send[0].course}}]})
+          console.log(query);
+
+          res.render("viewst", {sdata:send, tdata:query});
 
       }
       else{
@@ -239,7 +248,7 @@ app.post("/logins", async (req,res)=>{
       }
   }
   catch{
-      res.send("Wrong Credentials");
+     res.send("Wrong Credentials");
   }
 })
 
@@ -274,6 +283,33 @@ app.post("/enrollteacher", async (req, res) => {
     return res.status(500).json({ message: 'Enrollment failed' });
   }
 });
+
+app.get("/logina", (req,res)=>{
+  res.render("loginadmin");
+})
+
+//Admin Login
+app.post("/logina", async (req,res)=>{
+  try{
+      if(req.body.username=='admin')
+      {
+        if(req.body.password=='admin')
+        {
+          const donate = await collection.donate.find();
+          res.render("viewadmin",{amt: donate[0].amount, num: donate[0].donors});
+        }
+        else{
+          res.send("Wrong Password");
+        }
+      }
+      else{
+        res.send("Wrong Username");
+      }
+    }
+    catch{
+      res.send("Some error occured");
+    }
+})
 
 
 // appid 
