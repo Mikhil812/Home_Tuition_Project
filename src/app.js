@@ -29,17 +29,20 @@ app.use(cors());
 var latitude = "";
 var longitude = "";
 
+// All get pages just redirect the control to the respective ejs files.
+
+// Home Route
 app.get("/", function(req, res){
   res.render("home");
 });
 
+// Get page for financial aid 
 app.get("/view", function(req, res){
   res.render("view");
 });
 
+// Get page for statistics
 app.get("/analyse", async function(req, res){
-
-  console.log("Tu aaloo");
 
   const teacherData = await collection.teacher.find();
 
@@ -48,6 +51,7 @@ app.get("/analyse", async function(req, res){
   });
 })
 
+// Post page for collecting financial aid money
 app.post("/view", async function(req, res){
  
   //Get amount in database
@@ -61,6 +65,7 @@ app.post("/view", async function(req, res){
   res.sendFile(path.join(__dirname, '../views/payment.html'));
 });
 
+// Razorpay credential thing
 app.post("/payment", async(req,res)=>{
 
   let {amount} = req.body;
@@ -83,11 +88,12 @@ app.post("/payment", async(req,res)=>{
   })
 });
 
+// Get page for signup for teachers
 app.get("/signupt", (req,res)=>{
   res.render("signupteach");
 });
 
-//Teacher signup
+// Post page for signup for teachers -> All data except enrolledStudents is added here in the database and redirected to viewt
 app.post("/signupt",async(req,res)=>{
 
   //-------------------------DIRECT GEOLOCATION-----------------------------------//
@@ -147,11 +153,12 @@ app.post("/signupt",async(req,res)=>{
     })
   })
 
+// Get page for login for teachers 
 app.get("/logint", (req,res)=>{
   res.render("loginteach");
 })
 
-//Teacher Login
+// Post page for login for teachers -> Credentials are verified here and redirected to viewt
 app.post("/logint", async (req,res)=>{
   try{
       const check = await collection.teacher.findOne({username: req.body.username});
@@ -174,11 +181,12 @@ app.post("/logint", async (req,res)=>{
   }
 });
 
+// Get page for signup for students
 app.get("/signups", (req,res)=>{
   res.render("signupstud");
 });
 
-//Student signup
+// Post page for signup for students -> Query of teachers in same city and same course is executed here
 app.post("/signups",async(req,res)=>{
   const data = {
     username: req.body.username,
@@ -219,11 +227,12 @@ app.post("/signups",async(req,res)=>{
   }
 });
 
+// Get page for login for students
 app.get("/logins", (req,res)=>{
   res.render("loginstud");
 })
 
-//Student Login
+// Post page for login for students -> Credentials are verified and same query is done
 app.post("/logins", async (req,res)=>{
   try{
       const check = await collection.student.findOne({username: req.body.username});
@@ -252,10 +261,7 @@ app.post("/logins", async (req,res)=>{
   }
 })
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
-
+// Post page for embedding enrolledStudents in teachersSchema 
 app.post("/enrollteacher", async (req, res) => {
   try {
     const { studentUsername, teacherUsername } = req.body;
@@ -298,15 +304,17 @@ app.post("/enrollteacher", async (req, res) => {
     }
 });
 
+// Post page saying application for financial aid is successful
 app.post("/paypage", function(req, res){
   res.send("Application for reimbursement succesfful, we will keep you updated")
 })
 
+// Get page for login of admins
 app.get("/logina", (req,res)=>{
   res.render("loginadmin");
 })
 
-//Admin Login
+// Post page for login of admins -> Keeps track of money collected via donations
 app.post("/logina", async (req,res)=>{
   try{
       if(req.body.username=='admin')
@@ -330,11 +338,12 @@ app.post("/logina", async (req,res)=>{
     }
 })
 
-
+// Get page for reimbursememt
 app.get("/reimburse", (req,res)=>{
   res.render("reimburse");
 })
 
+// Post page for reimursements -> Collects all account details of students who are applying
 app.post("/reimburse", async (req,res)=>{
 
   const data = {
@@ -354,6 +363,12 @@ app.post("/reimburse", async (req,res)=>{
   res.send("Your application for reimbursement is accepted. We will get back to you in 3-5 business days.")
 
 })
+
+app.listen(3000, function() {
+  console.log("Server started on port 3000");
+});
+
+// RazorPay : 
 
 // appid 
 // 5058447
