@@ -50,7 +50,11 @@
             </tbody>
         </table>        
     </div>
+
+    <!-- List of Teachers in the same city which teach the required course :  -->
     <div class = "container">
+        <h2>Enroll a teacher</h2>
+        <form id="enrollForm" action="/enrollteacher" method="POST">
         <table class = "table table-hover" id = "table-id">
             <thead>
                 <tr>
@@ -64,13 +68,33 @@
                     <tr>
                         <td> <%= tdata[i].name %></td>
                         <td> <%= tdata[i].city %></td>
-                        <td> <%= tdata[i].course %></td>                        
+                        <td> <%= tdata[i].course %></td>  
+                        <td>
+                            <input type="radio" id="teacherUsername" name="teacherUsername" value="<%= tdata[i].username %>">
+                        </td>                    
                     </tr>
                 <% } %>
             </tbody>
-        </table> 
+        </table>
+
+        <!-- <label for="studentUsername">Your Username:</label> -->
+        <input type="hidden" id="studentUsername" name="studentUsername" value = "<%= sdata[0].username %>">
+
+        <button type="submit" class="btn btn-primary">Enroll Selected Teacher</button>
+        </form>
     </div>
+
+    <script>
+        // Add event listener to the radio buttons to capture selected teacher's username
+        const radioButtons = document.querySelectorAll('input[name="teacherUsername"]');
+        radioButtons.forEach(button => {
+            button.addEventListener('change', event => {
+                document.getElementById('teacherUsername').value = event.target.value;
+            });
+        });
+    </script>
 </body>
+
 
 <div class="footer-padding"></div>
     <div class="footer">

@@ -118,7 +118,8 @@ const TeacherSchema = new mongoose.Schema({
     lon:{
         type: String,
         required : false
-    }
+    },
+    enrolledStudents : [LoginSchema]
 });
 
 //Collection Part

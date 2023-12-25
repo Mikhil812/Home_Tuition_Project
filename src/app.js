@@ -247,6 +247,35 @@ app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
 
+app.post("/enrollteacher", async (req, res) => {
+  try {
+    const { studentUsername, teacherUsername } = req.body;
+    console.log("boom" + teacherUsername);
+
+    // Find the student based on the provided username
+    const student = await collection.student.findOne({ username: studentUsername });
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    // Find the teacher based on the provided username
+    const teacher = await collection.teacher.findOne({ username: teacherUsername });
+    if (!teacher) {
+      return res.status(404).json({ message: 'Teacher not found' });
+    }
+
+    // Add the student's entire schema to the teacher's enrolled students array
+    teacher.enrolledStudents.push(student);
+    await teacher.save();
+
+    return res.status(200).json({ message: 'Enrollment successful', teacher });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Enrollment failed' });
+  }
+});
+
+
 // appid 
 // 5058447
 
