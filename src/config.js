@@ -180,6 +180,6 @@ const ReimburseSchema = new mongoose.Schema({
 const student = new mongoose.model("students",LoginSchema);
 const teacher = new mongoose.model("teachers",TeacherSchema);
 const donate = new mongoose.model("donates",DonateSchema);
-const reimburse = new mongoose.model("reimburses",DonateSchema);
+const reimburse = new mongoose.model("reimburses",ReimburseSchema);
 
 module.exports = {student, teacher, donate, reimburse};

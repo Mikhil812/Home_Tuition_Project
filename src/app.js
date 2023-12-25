@@ -260,6 +260,7 @@ app.post("/enrollteacher", async (req, res) => {
   try {
     const { studentUsername, teacherUsername } = req.body;
     console.log("boom" + teacherUsername);
+    console.log("student username : " + studentUsername);
 
     // Find the student based on the provided username
     const student = await collection.student.findOne({ username: studentUsername });
@@ -273,19 +274,28 @@ app.post("/enrollteacher", async (req, res) => {
       res.send("<h1>Teacher not found.</h1>")
     }
 
-    // Add the student's entire schema to the teacher's enrolled students array
-    teacher.enrolledStudents.push(student);
-    await teacher.save();
+    // Check if the student is already enrolled with this teacher
+    const isEnrolled = teacher.enrolledStudents.some(function(enrolledStudent) {
+      return enrolledStudent.username === studentUsername;
+    });
+    console.log(isEnrolled);
 
-    res.render("paypage", {
-      feeAmt : teacher.fee
-    })
+    if (isEnrolled) {
+      res.send("Already enrolled")
+    }else{
+      // Add the student's entire schema to the teacher's enrolled students array
+      teacher.enrolledStudents.push(student);
+      await teacher.save();
 
-    console.log("Enrollment successfull");
-  } catch (error) {
-    console.error(error);
-    console.log("Enrollment failed");
-  }
+      res.render("paypage", {
+        feeAmt : teacher.fee
+      })
+
+      console.log("Enrollment successfull");
+      }
+    }catch(error){
+      console.log("error");
+    }
 });
 
 app.post("/paypage", function(req, res){

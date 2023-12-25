@@ -1,7 +1,29 @@
-<%- include("partials/logoutheader.ejs"); -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WIM Assign</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <div class="navbar-header ">
+          <p class="navbar-brand" id="hometut">Home Tutor</p>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- 6 -->
+            <li id="home" class="menu"><a href="/">LOGOUT</a></li>
+          </ul>
+      </div>
+    </nav>
+  </head>
+</head>
 
 <body>
-    <div class="form-container">
+    <br><br>
+    <div class="form-container" id="reimb">
         <h2>Reimbursement Form</h2>
         <form action = "/reimburse" method="post">
             <div class="form-group">
@@ -18,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label for="phone">Phone: </label>
-                <input type="number" id="phone" name="phone" placeholder="Enter your phone" required autocomplete="off">
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone" required autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="fee">Total Amount of fees you paid: </label>
@@ -43,11 +65,12 @@
             </div>
             <div class="form-group">
                 <label for="para">Write a para on why do you want reimbursement ? </label>
-                <textarea cols="20" ros="5" name="para" id="para" placeholder="Description" required></textarea>
+                <textarea cols="88" rows="5" name="para" id="para" placeholder="Description" required></textarea>
             </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
+    <br><br>
 </body>
 
 <%- include("partials/footer.ejs"); -%>
