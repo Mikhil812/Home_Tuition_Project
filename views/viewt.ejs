@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>WIM Assign</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">  
+<%- include("partials/logoutheader.ejs"); -%>
 
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container">
-        <div class="navbar-header ">
-          <p class="navbar-brand" id="hometut">Home Tutor</p>
-        </div>
-          <ul class="nav navbar-nav navbar-right">
-            <!-- 6 -->
-            <li id="home" class="menu"><a href="/">LOGOUT</a></li>
-          </ul>
-      </div>
-    </nav>
-  </head>
-</head>
 <body>
+    <!-- ID card of teacher karna hai not a table -->
     <div class="container">
         <h1>Welcome <%= tdata.name %></h1>
     
@@ -52,15 +33,38 @@
             </tbody>
         </table>
     </div>
-</body>
 
-<div class="footer-padding"></div>
-    <div class="footer">
-        <p>Copyright ©2023 Home Tutor Pvt. Ltd. All rights reserved.</p>
+    <!-- List of Enrolled Student's and their deets -->
+    <div class="container">
+        <h1>List of Enrolled Student's</h1>
+        
+        <% if(tdata.enrolledStudents.length != 0){ %>
+            <table class = "table table-hover" id = "table-id">
+                <thead>
+                    <tr>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Education</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < tdata.enrolledStudents.length; i++){ %>
+                        <tr>
+                            <td> <%= tdata.enrolledStudents[i].name %></td>
+                            <td> <%= tdata.enrolledStudents[i].age %></td>
+                            <td> <%= tdata.enrolledStudents[i].education %></td>
+                            <td> <%= tdata.enrolledStudents[i].phone %></td>
+                            <td> <%= tdata.enrolledStudents[i].email %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } else{ %>
+            <h4>No enrolled students yet.</h4>
+        <% } %>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="index.js"></script>
-
 </body>
-</html>
+
+<%- include("partials/footer.ejs"); -%>

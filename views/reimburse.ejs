@@ -1,0 +1,53 @@
+<%- include("partials/logoutheader.ejs"); -%>
+
+<body>
+    <div class="form-container">
+        <h2>Reimbursement Form</h2>
+        <form action = "/reimburse" method="post">
+            <div class="form-group">
+                <label for="username">Username: </label>
+                <input type="text" id="username" name="username" placeholder="Enter your Username" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input type="text" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone: </label>
+                <input type="number" id="phone" name="phone" placeholder="Enter your phone" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="fee">Total Amount of fees you paid: </label>
+                <input type="number" id="fee" name="fee" placeholder="Enter fee amount paid" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="accname">Account Holder Name: </label>
+                <input type="text" name="accname" id="accname" placeholder="Enter account holder name" required>
+            </div>
+            <div class="form-group">
+                <label for="accnum">Account Number: </label>
+                <input type="text" name="accnum" id="accnum" placeholder="Enter account number" required>
+            </div>
+            <div class="form-group">
+                <label for="income">Annual Family Income: </label>
+                <input type="number" name="income" id="income" placeholder="Enter family income" required>
+            </div>
+            <div class="form-group">
+                <label for="drive">Enter a drive link with view access to everyone</label>
+                <p>Drive link should have your Aadhar Card, Pan Card and Screenshot of email received on payment</p>
+                <input type="text" name="drive" id="drive" placeholder="Enter drive link" required>
+            </div>
+            <div class="form-group">
+                <label for="para">Write a para on why do you want reimbursement ? </label>
+                <textarea cols="20" ros="5" name="para" id="para" placeholder="Description" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+
+<%- include("partials/footer.ejs"); -%>

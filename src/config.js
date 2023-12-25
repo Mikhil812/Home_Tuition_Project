@@ -131,11 +131,55 @@ const DonateSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-})
+});
+
+const ReimburseSchema = new mongoose.Schema({
+    username:{
+        type: String,
+        required: true
+    },
+    name:{
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        required: true
+    },
+    phone:{
+        type: Number,
+        required: true
+    },
+    fee:{
+        type: Number,
+        required: true
+    },
+    accname:{
+        type: String,
+        required: true
+    },
+    accnum:{
+        type: String,
+        required: true
+    },
+    income:{
+        type: Number,
+        required: true
+    },
+    drive:{
+        type: String,
+        required: true
+    },
+    para:{
+        type: String,
+        required: true
+    }
+});
 
 //Collection Part
 const student = new mongoose.model("students",LoginSchema);
 const teacher = new mongoose.model("teachers",TeacherSchema);
 const donate = new mongoose.model("donates",DonateSchema);
+const reimburse = new mongoose.model("reimburses",DonateSchema);
 
-module.exports = {student, teacher, donate};
+module.exports = {student, teacher, donate, reimburse};

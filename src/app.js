@@ -12,6 +12,7 @@ const https = require("https");
 const { send } = require("process");
 const { log } = require("console");
 const { request } = require("http");
+const { rmSync } = require("fs");
 
 const app = express();
 
@@ -81,7 +82,6 @@ app.post("/payment", async(req,res)=>{
       amount
   })
 });
-
 
 app.get("/signupt", (req,res)=>{
   res.render("signupteach");
@@ -264,25 +264,33 @@ app.post("/enrollteacher", async (req, res) => {
     // Find the student based on the provided username
     const student = await collection.student.findOne({ username: studentUsername });
     if (!student) {
-      return res.status(404).json({ message: 'Student not found' });
+      res.send("<h1>Student not found.</h1>")
     }
 
     // Find the teacher based on the provided username
     const teacher = await collection.teacher.findOne({ username: teacherUsername });
     if (!teacher) {
-      return res.status(404).json({ message: 'Teacher not found' });
+      res.send("<h1>Teacher not found.</h1>")
     }
 
     // Add the student's entire schema to the teacher's enrolled students array
     teacher.enrolledStudents.push(student);
     await teacher.save();
 
-    return res.status(200).json({ message: 'Enrollment successful', teacher });
+    res.render("paypage", {
+      feeAmt : teacher.fee
+    })
+
+    console.log("Enrollment successfull");
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Enrollment failed' });
+    console.log("Enrollment failed");
   }
 });
+
+app.post("/paypage", function(req, res){
+  res.send("Application for reimbursement succesfful, we will keep you updated")
+})
 
 app.get("/logina", (req,res)=>{
   res.render("loginadmin");
@@ -296,7 +304,8 @@ app.post("/logina", async (req,res)=>{
         if(req.body.password=='admin')
         {
           const donate = await collection.donate.find();
-          res.render("viewadmin",{amt: donate[0].amount, num: donate[0].donors});
+          const re = await collection.reimburse.find();
+          res.render("viewadmin",{amt: donate[0].amount, num: donate[0].donors, reimb:re});
         }
         else{
           res.send("Wrong Password");
@@ -311,6 +320,30 @@ app.post("/logina", async (req,res)=>{
     }
 })
 
+
+app.get("/reimburse", (req,res)=>{
+  res.render("reimburse");
+})
+
+app.post("/reimburse", async (req,res)=>{
+
+  const data = {
+    username: req.body.username,
+    name: req.body.name,
+    email:req.body.email,
+    phone: req.body.phone,
+    fee: req.body.fee,
+    accname: req.body.accname,
+    accnum: req.body.accnum,
+    income: req.body.income,
+    drive: req.body.drive,
+    para: req.body.para
+  }
+  const insertedData = await collection.reimburse.insertMany(data);
+  console.log(insertedData);
+  res.send("Your application for reimbursement is accepted. We will get back to you in 3-5 business days.")
+
+})
 
 // appid 
 // 5058447
