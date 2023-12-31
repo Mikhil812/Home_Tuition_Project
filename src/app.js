@@ -187,45 +187,86 @@ app.get("/signups", (req,res)=>{
 });
 
 // Post page for signup for students -> Query of teachers in same city and same course is executed here
-app.post("/signups",async(req,res)=>{
-  const data = {
-    username: req.body.username,
-    password: req.body.password,
-    name: req.body.name,
-    age: req.body.age,
-    phone: req.body.phone,
-    email: req.body.email,
+app.post("/signups",async(request,response)=>{
 
-    edu: req.body.edu,
-    course: req.body.course,
+  //-------------------------PHONE NUMBER VALIDATION-----------------------------------//
+  const number = request.body.phone;
 
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode,
-  }
-  //check if student already exists
-  const existingTeacher = await collection.student.findOne({username: data.username});
-  if(existingTeacher)
-  {
-      res.send("Username already exists. Please choose another username");
-  }
-  else{
-    //hash the password so it does not get hacked
-    const saltrounds = 10; //No of saltrounds for bcrypt
-    const hashedPassword = await bcrypt.hash(data.password, saltrounds);
-    data.password = hashedPassword;// replace original passsword with hashed password
-    const studentData = await collection.student.insertMany(data);
-    console.log(studentData);
+  const options = {
+    method: 'GET',
+    hostname: 'phonenumbervalidatefree.p.rapidapi.com',
+    port: null,
+    path: '/ts_PhoneNumberValidateTest.jsp?number=%2B91' + number + '&country=IN',
+    headers: {
+        'X-RapidAPI-Key': '7e98973274msh649245247ddbf5ap17f005jsn76349966ce4b',
+        'X-RapidAPI-Host': 'phonenumbervalidatefree.p.rapidapi.com'
+    }
+  };
 
-    const query = await collection.teacher.find({$and:[{city:{$eq:studentData[0].city}},{course: {$eq: studentData[0].course}}]})
-    console.log(query);
+  const req = https.request(options, function (res) {
+    const chunks = [];
 
-    res.render("viewst", {
-      sdata : studentData,
-      tdata : query
+    res.on('data', function (chunk) {
+        chunks.push(chunk);
     });
-  }
+
+    res.on('end', function () {
+      const body = Buffer.concat(chunks);
+      // console.log(body.toString());
+      const Data = JSON.parse(body);
+      // console.log(Data);
+
+      // response.write("<h1>This Phone number validity is : " + Data.isValidNumber + "</h1>");
+      // response.send();
+
+      const validity = Data.isValidNumber;
+      if(validity == true){
+        console.log("Phone number is valid");
+      }else{
+        console.log("Phone number not valid");
+      }
+    });
+  });
+
+      const data = {
+        username: request.body.username,
+        password: request.body.password,
+        name: request.body.name,
+        age: request.body.age,
+        phone: request.body.phone,
+        email: request.body.email,
+
+        edu: request.body.edu,
+        course: request.body.course,
+
+        city: request.body.city,
+        state: request.body.state,
+        zipcode: request.body.zipcode,
+      }
+        //check if student already exists
+        const existingTeacher = await collection.student.findOne({username: data.username});
+        if(existingTeacher)
+        {
+            response.send("Username already exists. Please choose another username");
+        }
+        else{
+          //hash the password so it does not get hacked
+          const saltrounds = 10; //No of saltrounds for bcrypt
+          const hashedPassword = await bcrypt.hash(data.password, saltrounds);
+          data.password = hashedPassword;// replace original passsword with hashed password
+          const studentData = await collection.student.insertMany(data);
+          console.log(studentData);
+
+          const query = await collection.teacher.find({$and:[{city:{$eq:studentData[0].city}},{course: {$eq: studentData[0].course}}]})
+          console.log(query);
+
+          response.render("viewst", {
+            sdata : studentData,
+            tdata : query
+          });
+        }
 });
+        
 
 // Get page for login for students
 app.get("/logins", (req,res)=>{
@@ -247,6 +288,7 @@ app.post("/logins", async (req,res)=>{
           var send=[];
           send.push(check);
           const query = await collection.teacher.find({$and:[{city:{$eq:send[0].city}},{course: {$eq: send[0].course}}]})
+
           console.log(query);
 
           res.render("viewst", {sdata:send, tdata:query});
